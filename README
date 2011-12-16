@@ -1,0 +1,32 @@
+Introduction
+============
+Wrapper for SimpleXML to provide a few more convenience methods mainly 
+dealing with appending/removing nodes from an Xml document. Xml can be added
+as either a XmlElement, SimpleXMLElement, or a plain string.
+
+Usage
+============
+
+1. Create a new document/element.
+$xml = new Xml\XmlElement('<root><node></node></root>');
+$xml->asXML(); // <?xml version="1.0"?><root><node/></root>
+
+2. Add an attribute to the element.
+$xml->addAttribute('test', 'value');
+$xml->asXML(); // <?xml version="1.0"?><root test="value"><node/></root>
+
+3. Add a CDATA node to the first <node /> element.
+$xml->xpathn('//node', 0)->addCDATA('This is a CDATA node');
+$xml->asXML(); // <?xml version="1.0"?><root><node><![CDATA[This is a CDATA node]]></node></root>
+
+4. Append a plain string of XML to the root node.
+$xml->append('<another></another>');
+$xml->asXML(); // <?xml version="1.0"?><root><node><![CDATA[This is a CDATA node]]></node><another/></root>
+
+5. Append an XmlElement node to the root node.
+$xml->append(new Xml\XmlElement('<yann />'));
+$xml->asXml(); // <?xml version="1.0"?><root><node><![CDATA[This is a CDATA node]]></node><another/><yann/></root>
+
+6. Remove a node based on Xpath query
+$xml->removeNode('//yann');
+$xml->asXml(); // <?xml version="1.0"?><root><node><![CDATA[This is a CDATA node]]></node><another/></root>
