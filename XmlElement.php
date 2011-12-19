@@ -37,7 +37,6 @@ use \SimpleXMLIterator;
  * dealing with appending/removing nodes from an Xml document. Xml can be added
  * as either a XmlElement, SimpleXMLElement, or a plain string.
  *
- * @category    Gowi
  * @category    Xml
  * @package     XmlElement
  */
